@@ -20,14 +20,15 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
+@MappedSuperclass
 public class BaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
 	@GenericGenerator(name = "UUID",
-	type = org.hibernate.id.uuid.UuidGenerator.class)
+	                  type = org.hibernate.id.uuid.UuidGenerator.class)
+	@JdbcTypeCode(SqlTypes.CHAR)//ஜாவாவில் எழுதப்பட்ட நிரல்களை தரவுத்தளங்களுடன் 
+	                            //இணைப்பதற்கான ஜாவா ஏபிஐ ஆகும்.
 	@Column(name="Id",updatable = false , nullable = false)
-	@JdbcTypeCode(SqlTypes.CHAR)
 	private UUID Id;
 }

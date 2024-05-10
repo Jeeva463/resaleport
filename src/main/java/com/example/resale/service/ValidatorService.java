@@ -3,13 +3,17 @@ package com.example.resale.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
+
+import javax.security.auth.Subject;
 
 import org.springframework.stereotype.Service;
 
 
 import com.example.resale.entity.User;
 import com.example.resale.enums.RequestType;
+import com.example.resale.exception.ObjectInvalidException;
 import com.example.resale.front.UserRegister;
 import com.example.resale.repository.UserRepository;
 import com.example.resale.response.MessageService;
@@ -22,19 +26,18 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class ValidatorService {
-	ValidationResult validationResult;
-	
 	private final MessageService messageService;
 	private final @NonNull UserService userService;
 	private final @NonNull UserRepository userRepository;
 
 	List<String> errors = null;
+	Optional<Subject> subject = null;
 	//List<String> errorsObj = null;
 	public ValidationResult validate(RequestType requesttype, UserRegister request) throws Exception {
-		errors = new ArrayList<>();
-		User user1 = null;
+		ArrayList<String>errors = new ArrayList<>();
+		User user = null;
 		
-		if(!ValidationUtil.isNameValid(request.getName())) {
+		if(!ValidationUtil.isNameValid(request.getName())) {// !isNameValid-->!=
 			errors.add(messageService.messageResponse("ValidatorService.user.name.required"));
 		}else {
 			request.setName((ValidationUtil.getFormattedString(request.getName())));
@@ -45,9 +48,9 @@ public class ValidatorService {
 		ValidationResult result = new ValidationResult();
 		if(errors.size()>0) {
 			String errorMessage = errors.stream().map(a -> String.valueOf(a)).collect(Collectors.joining(", "));
-			throw new Exception(errorMessage);
+			throw new ObjectInvalidException(errorMessage);
 		}
-		user1 = User.builder()
+		user = User.builder()
 				.name(request.getName()).build();
 //				.name(request.getName())
 //				.age(request.getAge())
@@ -59,7 +62,7 @@ public class ValidatorService {
 //				.dateOfBirth(request.getDateOfBirth())
 //				.gender(request.getGender()).build();
 		
-		result.setObject(user1);
+		result.setObject(user);
 		return result;
 //		
 //		

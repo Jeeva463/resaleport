@@ -9,7 +9,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 public class Jpaconfig {
 	@Bean
-	public AuditorAware<String> auditorprovider (){
+	public AuditorAware<String> AuditorProvider (){
 		return new  ApplicationAuditAware();
 	}
 

@@ -3,10 +3,12 @@ package com.example.resale.entity;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 import org.hibernate.usertype.UserType;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.example.resale.audit.AuditwithBaseEntity;
@@ -37,13 +39,13 @@ public class User extends AuditwithBaseEntity implements UserDetails, Serializab
 	@Serial
 	private static final long serialVersionUID = 1L;
 	
-	@Column(name="Name")
+	@Column(name="name")
 	private String name;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
 		return null;
+		
 	}
 
 	@Override
@@ -82,8 +84,8 @@ public class User extends AuditwithBaseEntity implements UserDetails, Serializab
 		return true;
 	}
 	
-//	@Column(name="Age")
-//	private String Age;
+	@Column(name="Age")
+	private String Age;
 //	
 //	@Enumerated(EnumType.STRING)
 //	@Column(name="Gender")
@@ -92,8 +94,8 @@ public class User extends AuditwithBaseEntity implements UserDetails, Serializab
 //	@Column(name="Address")
 //	private String Address;
 //	
-//	@Column(name="DOB")
-//	private String DOB;
+	@Column(name="DateOfBirth")
+	private String DateOfBirth;
 //	
 //	@Column(name="Email")
 //	private String Email;

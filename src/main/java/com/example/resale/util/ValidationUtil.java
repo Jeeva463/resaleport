@@ -1,9 +1,8 @@
 package com.example.resale.util;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import com.example.resale.enums.GenderType;
 
@@ -40,6 +39,34 @@ public class ValidationUtil {
 		}
 		return true;
 	}
+	
+	public static boolean isAgeRequired(String age) {
+	    return age == null || age.trim().isEmpty();
+	}
+	
+	public static int calculateAge(String dob) {
+	    LocalDate today = LocalDate.now();
+	    final String DATE_PATTERN = "dd.MM.yyyy";
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_PATTERN);
+		LocalDate date = LocalDate.parse(dob, formatter);
+	    return Period.between(date, today).getYears();
+	}
+	
+   public static boolean isEighteenOrOlder(String birthDate, String reportedAge) {
+		
+	    int calculatedAge = calculateAge(birthDate);
+	    
+	    int age = Integer.parseInt(reportedAge);
+	    
+	    return calculatedAge >= 18 && age > 18;
+	}
+  
+   public static boolean isDateOfBirthAgeMatcher(String dob , String reportedAge) {
+	int calculatedAge = calculateAge(dob);
+	int age = Integer.parseInt(reportedAge);
+	return calculatedAge == age;
+}
+	
 //	
 //	public static boolean isnullorEmpty(String value) {
 //		return null==value || value.trim().isEmpty();

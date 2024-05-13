@@ -17,18 +17,18 @@ import lombok.RequiredArgsConstructor;
 public class UserService {
 	private final  UserRepository userRepository;
 	private final BCryptPasswordEncoder passwordEncoder;
-	public User userRegister(User user) {
-		return userRepository.save(user);
+	//public User userRegister(User user) {
+//		return userRepository.save(user);
 		
-	}
+	//}
 	
-//	
-//	public  User userRegister(User user) {
-//		User userobj = User.builder()
+	
+	public  User userRegister(User user) {
+		User userobj = User.builder()
+				.name(user.getName())
+				.Age(user.getAge()).build();
 //				.Email(user.getEmail())
 //				.userName(user.getUserName())
-//				.Name(user.getName())
-//				.Age(user.getAge())
 //				.DOB(user.getDOB())
 //				.Gender(user.getGender())
 //				.Status(Status.ACTIVE)
@@ -43,5 +43,7 @@ public class UserService {
 //		
 //	}
 //		
+		return  userRepository.save(userobj);
 		
+}
 }

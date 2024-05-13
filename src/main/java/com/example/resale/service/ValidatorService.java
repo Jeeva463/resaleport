@@ -45,15 +45,27 @@ public class ValidatorService {
 				errors.add(messageService.messageResponse("ValidatorService.user.name.invalid"));
 			}
 		}
+		
+		
+		if(ValidationUtil.isAgeRequired(request.getAge())) {
+			errors.add(messageService.messageResponse("ValidatorService.age.required"));
+		}else {
+			if(!ValidationUtil.isEighteenOrOlder(request.getDateOfBirth(),request.getAge())) {
+				errors.add(messageService.messageResponse("ValidatorService.age.invalid"));
+			}
+			if(!ValidationUtil.isDateOfBirthAgeMatcher(request.getDateOfBirth(), request.getAge())) {
+				errors.add(messageService.messageResponse("ValidatorService.age.matcher"));
+			}
+		}
+		
 		ValidationResult result = new ValidationResult();
 		if(errors.size()>0) {
 			String errorMessage = errors.stream().map(a -> String.valueOf(a)).collect(Collectors.joining(", "));
 			throw new ObjectInvalidException(errorMessage);
 		}
 		user = User.builder()
-				.name(request.getName()).build();
-//				.name(request.getName())
-//				.age(request.getAge())
+				.name(request.getName())
+     			.Age(request.getAge()).build();
 //				.email(request.getEmail())
 //				.password(enPassword)
 //				.confirmpassword(enPassword1)

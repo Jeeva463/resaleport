@@ -29,6 +29,6 @@ public class BaseEntity {
 	                  type = org.hibernate.id.uuid.UuidGenerator.class)
 	@JdbcTypeCode(SqlTypes.CHAR)//ஜாவாவில் எழுதப்பட்ட நிரல்களை தரவுத்தளங்களுடன் 
 	                            //இணைப்பதற்கான ஜாவா ஏபிஐ ஆகும்.
-	@Column(name="Id",updatable = false , nullable = false)
-	private UUID Id;
+	@Column(name="id",updatable = false , nullable = false)
+	private UUID id;
 }

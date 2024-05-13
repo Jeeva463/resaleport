@@ -8,8 +8,6 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
@@ -22,22 +20,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
-@JsonIgnoreProperties(value = {"updatedAt","createdAt","deletedAt","deletedBy"})
-public class AuditEntity {
-	
-    @CreatedDate
-    @Column(name = "created_at",nullable = false, updatable = false)
-    private LocalDateTime createdAt;
+public class Audit {
+	 @CreatedDate
+	    @Column(name = "created_at",nullable = false, updatable = false)
+	    private LocalDateTime createdAt;
 
-    @LastModifiedDate
-    @Column(name = "updated_at",insertable = false)
-    private LocalDateTime updatedAt;
+	    @LastModifiedDate
+	    @Column(name = "updated_at",insertable = false)
+	    private LocalDateTime updatedAt;
 
-    @CreatedBy
-    @Column(name = "created_by",nullable = false,updatable = false)
-    private String createdBy;
-    @LastModifiedBy
-    @Column(name = "updated_by",insertable = false)
-    private String updatedBy;
+	    @CreatedBy
+	    @Column(name = "created_by",nullable = false,updatable = false)
+	    private String createdBy;
+	    @LastModifiedBy
+	    @Column(name = "updated_by",insertable = false)
+	    private String updatedBy;
+
 
 }

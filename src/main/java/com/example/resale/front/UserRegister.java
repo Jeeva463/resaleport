@@ -15,7 +15,7 @@ private String userName;
 	
 	private String Name;
 	
-//	private String Age;
+	private String Age;
 //	
 //	private String Email;
 //	
@@ -27,7 +27,7 @@ private String userName;
 //	
 //	private String conformPassword;
 //	
-//	private String DOB;
+	private String DateOfBirth;
 //	
 //	private String Address;
 }

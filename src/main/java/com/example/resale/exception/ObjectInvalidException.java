@@ -1,6 +1,6 @@
 package com.example.resale.exception;
 
-public class ObjectInvalidException extends Exception {
+public class ObjectInvalidException extends RuntimeException {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -8,4 +8,6 @@ public class ObjectInvalidException extends Exception {
 		super(message);
 	}
 
+	public ObjectInvalidException() {
+	}
 }

@@ -16,18 +16,18 @@ private String userName;
 	private String Name;
 	
 	private String Age;
-//	
-//	private String Email;
-//	
-//	private String mobileNo;
-//	
-//	private GenderType Gender;
-//	
-//	private String Password;
-//	
-//	private String conformPassword;
-//	
+	
+	private String Email;
+	
+	private String mobileNo;
+	
+	private GenderType Gender;
+	
+	private String Password;
+	
+	private String conformPassword;
+	
 	private String DateOfBirth;
-//	
-//	private String Address;
+	
+	private String Address;
 }

@@ -50,77 +50,77 @@ public class User extends AuditwithBaseEntity implements UserDetails, Serializab
 
 	@Override
 	public String getPassword() {
-		// TODO Auto-generated method stub
-		return null;
+	
+		return Password;
 	}
 
 	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return userName;
 	}
 
 	@Override
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
+		
 		return true;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
+		
 		return true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
+		
 		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
+		
 		return true;
 	}
 	
 	@Column(name="Age")
 	private String Age;
-//	
-//	@Enumerated(EnumType.STRING)
-//	@Column(name="Gender")
-//	private GenderType Gender;
-//	
-//	@Column(name="Address")
-//	private String Address;
-//	
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name="Gender")
+	private GenderType Gender;
+	
+	@Column(name="Address")
+	private String Address;
+	
 	@Column(name="DateOfBirth")
 	private String DateOfBirth;
-//	
-//	@Column(name="Email")
-//	private String Email;
-//	
-//	@Column(name="mobile_No")
-//	private String mobileNo;
-//	
-//	@Enumerated(EnumType.STRING)
-//	@Column(name="Role")
-//	private Usertype Role;
-//	
-//	@Enumerated(EnumType.STRING)
-//	@Column(name="Status")
-//	private Status Status;
-//
-//	@Column(name="user_Name")
-//	private String userName;
-//	
-//	@Column(name="Password")
-//	private String Password;
-//	
-//	@Column(name="conform_Password")
-//	private String conformPassword;
-//	
-//	
+	
+	@Column(name="Email")
+	private String Email;
+	
+	@Column(name="mobile_No")
+	private String mobileNo;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name="Role")
+	private Usertype Role;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name="Status")
+	private Status Status;
+
+	@Column(name="user_Name")
+	private String userName;
+	
+	@Column(name="Password")
+	private String Password;
+	
+	@Column(name="conform_Password")
+	private String conformPassword;
+	
+	
 
 
 	

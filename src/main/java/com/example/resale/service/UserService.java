@@ -26,23 +26,23 @@ public class UserService {
 	public  User userRegister(User user) {
 		User userobj = User.builder()
 				.name(user.getName())
-				.Age(user.getAge()).build();
-//				.Email(user.getEmail())
-//				.userName(user.getUserName())
-//				.DOB(user.getDOB())
-//				.Gender(user.getGender())
-//				.Status(Status.ACTIVE)
-//				.Role(Usertype.USER)
-//				.Address(user.getAddress())
-//				.Password(passwordEncoder.encode(user.getPassword()))
-//				.conformPassword(passwordEncoder.encode(user.getConformPassword()))
-//				.mobileNo(user.getMobileNo()).build();
-//				userRepository.saveAndFlush(user);
-//				
-//				return user;
-//		
-//	}
-//		
+				.Age(user.getAge())
+				.Email(user.getEmail())
+				.userName(user.getUsername())
+				.DateOfBirth(user.getDateOfBirth())
+				.Gender(user.getGender())
+				.Status(Status.ACTIVE)
+				.Role(Usertype.USER)
+				.Address(user.getAddress())
+				.Password(passwordEncoder.encode(user.getPassword()))
+				.conformPassword(passwordEncoder.encode(user.getConformPassword()))
+				.mobileNo(user.getMobileNo()).build();
+				userRepository.saveAndFlush(user);
+				
+				//return user;
+		
+	//}
+		
 		return  userRepository.save(userobj);
 		
 }

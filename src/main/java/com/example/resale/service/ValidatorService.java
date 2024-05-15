@@ -33,8 +33,8 @@ public class ValidatorService {
 	List<String> errors = null;
 	Optional<Subject> subject = null;
 	//List<String> errorsObj = null;
-	public ValidationResult validate(RequestType requesttype, UserRegister request) throws ObjectInvalidException  {
-		ArrayList<String>errors = new ArrayList<>();
+	public ValidationResult validate(RequestType requesttype, UserRegister request)  {
+		errors = new ArrayList<>();
 		User user = null;
 		
 		if(!ValidationUtil.isNameValid(request.getName())) {// !isNameValid-->!=
@@ -123,14 +123,14 @@ public class ValidatorService {
 		}
 		user = User.builder()
 				.name(request.getName())
-     			.Age(request.getAge())
-				.Email(request.getEmail())
-				.Password(request.getPassword())
+     			.age(request.getAge())
+				.email(request.getEmail())
+				.password(request.getPassword())
 				.conformPassword(request.getConformPassword())
-				.Address(request.getAddress())
 				.mobileNo(request.getMobileNo())
-				.DateOfBirth(request.getDateOfBirth())
-				.Gender(request.getGender()).build();
+				.dateOfBirth(request.getDateOfBirth())
+				.userName(request.getUserName())
+				.gender(request.getGender()).build();
 		
 		result.setObject(user);
 		return result;

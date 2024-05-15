@@ -12,6 +12,10 @@ import com.example.resale.enums.GenderType;
 
 
 public class ValidationUtil {
+	
+	private ValidationUtil() {
+
+	}
 
 	public static boolean isNameValid(String name) {
 		return name !=null && !name.isEmpty();

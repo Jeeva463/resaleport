@@ -25,11 +25,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Builder
-@Data
+@Getter
+@Setter
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
@@ -51,7 +54,7 @@ public class User extends AuditwithBaseEntity implements UserDetails, Serializab
 	@Override
 	public String getPassword() {
 	
-		return Password;
+		return password;
 	}
 
 	@Override
@@ -84,38 +87,36 @@ public class User extends AuditwithBaseEntity implements UserDetails, Serializab
 		return true;
 	}
 	
-	@Column(name="Age")
-	private String Age;
+	@Column(name="age")
+	private String age;
 	
 	@Enumerated(EnumType.STRING)
-	@Column(name="Gender")
-	private GenderType Gender;
+	@Column(name="gender")
+	private GenderType gender;
 	
-	@Column(name="Address")
-	private String Address;
 	
-	@Column(name="DateOfBirth")
-	private String DateOfBirth;
+	@Column(name="date_Birth")
+	private String dateOfBirth;
 	
-	@Column(name="Email")
-	private String Email;
+	@Column(name="email")
+	private String email;
 	
 	@Column(name="mobile_No")
 	private String mobileNo;
 	
 	@Enumerated(EnumType.STRING)
-	@Column(name="Role")
-	private Usertype Role;
+	@Column(name="role")
+	private Usertype role;
 	
 	@Enumerated(EnumType.STRING)
-	@Column(name="Status")
-	private Status Status;
+	@Column(name="status")
+	private Status status;
 
 	@Column(name="user_Name")
 	private String userName;
 	
-	@Column(name="Password")
-	private String Password;
+	@Column(name="password")
+	private String password;
 	
 	@Column(name="conform_Password")
 	private String conformPassword;

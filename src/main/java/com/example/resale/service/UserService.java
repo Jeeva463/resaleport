@@ -26,15 +26,14 @@ public class UserService {
 	public  User userRegister(User user) {
 		User userobj = User.builder()
 				.name(user.getName())
-				.Age(user.getAge())
-				.Email(user.getEmail())
+				.age(user.getAge())
+				.email(user.getEmail())
 				.userName(user.getUsername())
-				.DateOfBirth(user.getDateOfBirth())
-				.Gender(user.getGender())
-				.Status(Status.ACTIVE)
-				.Role(Usertype.USER)
-				.Address(user.getAddress())
-				.Password(passwordEncoder.encode(user.getPassword()))
+				.dateOfBirth(user.getDateOfBirth())
+				.gender(user.getGender())
+				.status(Status.ACTIVE)
+				.role(Usertype.USER)
+				.password(passwordEncoder.encode(user.getPassword()))
 				.conformPassword(passwordEncoder.encode(user.getConformPassword()))
 				.mobileNo(user.getMobileNo()).build();
 				userRepository.saveAndFlush(user);

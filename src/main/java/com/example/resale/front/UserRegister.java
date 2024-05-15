@@ -29,5 +29,4 @@ private String userName;
 	
 	private String DateOfBirth;
 	
-	private String Address;
 }

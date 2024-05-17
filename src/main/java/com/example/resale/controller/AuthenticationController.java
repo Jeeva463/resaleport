@@ -1,6 +1,6 @@
 package com.example.resale.controller;
 
-import java.net.http.HttpHeaders;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,10 +13,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpHeaders;
+
 
 import com.example.resale.entity.User;
 import com.example.resale.enums.RequestType;
 import com.example.resale.front.UserRegister;
+import com.example.resale.response.ResponseGenerator;
+import com.example.resale.response.TransactionContext;
 import com.example.resale.security.JwtService;
 import com.example.resale.service.UserService;
 import com.example.resale.service.ValidatorService;
@@ -33,9 +37,10 @@ public class AuthenticationController {
 	private final UserService userService;
 	private final ValidatorService validatorService;
 	private final JwtService jwtService;
+	private final ResponseGenerator responseGenerator;
 	
 	@PostMapping("/post")
-	public User userRegister(@RequestBody UserRegister request,@RequestHeader HttpHeaders httpHeaders
+	public ResponseEntity<?> userRegister(@RequestBody UserRegister request,@RequestHeader HttpHeaders httpHeaders
 			) throws Exception{
 		ValidationResult validationResult=validatorService.validate(RequestType.POST,request);
 		User user= (User) validationResult.getObject();
@@ -43,11 +48,21 @@ public class AuthenticationController {
 		
 		Map<String, Object> response = new HashMap<>();
 		final String token = jwtService.generateToken(user1);
-		response.put("Status", 1);
+		response.put("Status", 1);// indha 3-m ok statusna ipdi vara eludhunadhu
 		response.put("message", "You have registerd successfully.");
 		response.put("token",token);
+		
+		TransactionContext context = responseGenerator.generatorTransactioncontext(httpHeaders);
+		try {
+		return responseGenerator.successResponse(context, response, HttpStatus.OK);
+		}
+		catch(Exception e){	
+		return responseGenerator.errorResponse(context, e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		
+		
 
-		return user1;
+		
 		
 	}
 }

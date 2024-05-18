@@ -15,13 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpHeaders;
 
-
+import com.example.resale.entity.Login;
 import com.example.resale.entity.User;
 import com.example.resale.enums.RequestType;
 import com.example.resale.front.UserRegister;
 import com.example.resale.response.ResponseGenerator;
 import com.example.resale.response.TransactionContext;
 import com.example.resale.security.JwtService;
+import com.example.resale.service.AuthenticationService;
 import com.example.resale.service.UserService;
 import com.example.resale.service.ValidatorService;
 import com.example.resale.validator.ValidationResult;
@@ -38,6 +39,7 @@ public class AuthenticationController {
 	private final ValidatorService validatorService;
 	private final JwtService jwtService;
 	private final ResponseGenerator responseGenerator;
+	private final AuthenticationService authenticationService;
 	
 	@PostMapping("/post")
 	public ResponseEntity<?> userRegister(@RequestBody UserRegister request,@RequestHeader HttpHeaders httpHeaders
@@ -57,12 +59,22 @@ public class AuthenticationController {
 		return responseGenerator.successResponse(context, response, HttpStatus.OK);
 		}
 		catch(Exception e){	
+			e.printStackTrace();//printStackTrace edhu varugira problemai listout(print) panni kattum
+			logger.error(e.getMessage(), e);
 		return responseGenerator.errorResponse(context, e.getMessage(), HttpStatus.BAD_REQUEST);
+		}	
+	}
+	@PostMapping("/userlogin")
+	public ResponseEntity<?> loginUser(@RequestBody Login login,@RequestBody HttpHeaders httpHeaders  ){
+		ResponseEntity<?> authenticationservice =	authenticationService.loginUser(login);
+		TransactionContext context = responseGenerator.generatorTransactioncontext(httpHeaders);
+		try {
+			return responseGenerator.successResponse(context, authenticationservice, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(e.getMessage(), e);
+			return responseGenerator.errorResponse(context, e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
-		
-		
-
-		
 		
 	}
 }

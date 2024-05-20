@@ -65,7 +65,7 @@ public class AuthenticationController {
 		}	
 	}
 	@PostMapping("/userlogin")
-	public ResponseEntity<?> loginUser(@RequestBody Login login,@RequestBody HttpHeaders httpHeaders  ){
+	public ResponseEntity<?> loginUser(@RequestBody Login login,@RequestHeader HttpHeaders httpHeaders  ){
 		ResponseEntity<?> authenticationservice =	authenticationService.loginUser(login);
 		TransactionContext context = responseGenerator.generatorTransactioncontext(httpHeaders);
 		try {

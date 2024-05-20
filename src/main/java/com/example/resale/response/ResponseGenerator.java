@@ -17,11 +17,11 @@ public class ResponseGenerator {
 	public TransactionContext generatorTransactioncontext(HttpHeaders httpHeaders) {
 		
 		TransactionContext context = new TransactionContext();
-//		if(httpHeaders == null) {
-//			context.setCorrelationId("demo");
-//			context.setApplicationLabel("demo");
-//			return context;
-//		}
+		if(httpHeaders == null) {
+			context.setCorrelationId("demo");
+			context.setApplicationLabel("demo");
+			return context;
+		}
 		if(httpHeaders.get("CorrelationId")!=null) {
 			context.setCorrelationId(httpHeaders.get("CorrelationId").toString());
 			}else {

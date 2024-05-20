@@ -1,16 +1,11 @@
 package com.example.resale.service;
 
-
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import com.example.resale.entity.User;
 import com.example.resale.enums.Status;
 import com.example.resale.enums.Usertype;
 import com.example.resale.repository.UserRepository;
-import com.example.resale.response.MessageService;
-
 import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
@@ -36,8 +31,6 @@ public class UserService {
 				.password(passwordEncoder.encode(user.getPassword()))
 				.conformPassword(passwordEncoder.encode(user.getConformPassword()))
 				.mobileNo(user.getMobileNo()).build();
-				userRepository.saveAndFlush(user);
-				
 				//return user;
 		
 	//}

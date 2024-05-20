@@ -39,20 +39,20 @@ public class JwtService {
 		return Keys.hmacShaKeyFor(keyBytes);
 	}
 
-	public String generateToken(User userDetails) {
-		return generateToken(Map.of(), userDetails);
+	public String generateToken(User user) {
+		return generateToken(Map.of(), user);
 	}
 
-	public String generateToken(Map<String, Object> extraClaim, UserDetails userDetails) {
-		return Jwts.builder().setClaims(extraClaim).setSubject(userDetails.getUsername())
+	public String generateToken(Map<String, Object> extraClaim, User user) {
+		return Jwts.builder().setClaims(extraClaim).setSubject(user.getUsername())
 				.setIssuer("http://ebraintechnologies.com").setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + ACCESS_TOKEN_VALIDITY_SECONDS))
 				.signWith(getSigninKey(), SignatureAlgorithm.HS256).compact();
 	}
 
-	public boolean isTokenValid(String token, UserDetails userDetails) {
+	public boolean isTokenValid(String token, User user) {
 		final String userName = extractUserName(token);
-		return (userName.equals(userDetails.getUsername())) && !istokenexpired(token);
+		return (userName.equals(user.getUsername())) && !istokenexpired(token);
 	}
 
 	private boolean istokenexpired(String token) {

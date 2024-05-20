@@ -1,13 +1,9 @@
 package com.example.resale.response;
 
 import java.util.List;
-
-import com.example.resale.response.*;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-
 import lombok.Getter;
-import lombok.Setter;
 @Getter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)

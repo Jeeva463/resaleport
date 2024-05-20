@@ -13,20 +13,20 @@ import lombok.NoArgsConstructor;
 public class UserRegister {
 private String userName;
 	
-	private String Name;
+	private String name;
 	
 	private String Age;
 	
-	private String Email;
+	private String email;
 	
 	private String mobileNo;
 	
-	private GenderType Gender;
+	private GenderType gender;
 	
-	private String Password;
+	private String password;
 	
 	private String conformPassword;
 	
-	private String DateOfBirth;
+	private String dateOfBirth;
 	
 }

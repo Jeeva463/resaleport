@@ -4,16 +4,13 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
-import java.util.UUID;
 
-import org.hibernate.usertype.UserType;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import com.example.resale.audit.AuditwithBaseEntity;
-import com.example.resale.enums.GenderType;
 import com.example.resale.enums.Usertype;
+import com.example.resale.enums.GenderType;
 import com.example.resale.enums.Status;
 
 import jakarta.persistence.Column;
@@ -23,7 +20,6 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -47,7 +43,7 @@ public class User extends AuditwithBaseEntity implements UserDetails, Serializab
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return null;
+		return List.of(new SimpleGrantedAuthority(role.name()));
 		
 	}
 

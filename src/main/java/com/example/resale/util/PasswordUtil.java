@@ -19,7 +19,7 @@ public class PasswordUtil {
 	    }
 	    
 	    public static void main(String[] args) {
-			System.out.println(getEncryptedPassword("hastin@2024"));
+			System.out.println(getEncryptedPassword("Jeeva@123"));
 		}
 
 }
